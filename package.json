@@ -1,0 +1,47 @@
+{
+  "name": "sf-user-manager",
+  "displayName": "Salesforce Login Manager",
+  "description": "Manage your Salesforce org logins in VS Code",
+  "version": "0.1.1",
+  "repository": "https://github.com/lukenvang/sf-login-manager/tree/main",
+  "publisher": "lukenvang",
+  "keywords": [
+		"sfdx",
+		"salesforcedx",
+		"sfdx login",
+		"salesforce login",
+    "sf",
+    "sf login"
+	],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Extension Packs",
+    "Other"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "user-manager.openLoginPanel",
+        "title": "SFDX: Open Login Manager"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "18.x",
+    "@types/vscode": "^1.85.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^8.54.0",
+    "jest": "^29.7.0"
+  }
+}
