@@ -2,7 +2,7 @@
   "name": "sf-user-manager",
   "displayName": "Salesforce Login Manager",
   "description": "Manage your Salesforce org logins in VS Code",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": "https://github.com/lukenvang/sf-login-manager/tree/main",
   "publisher": "lukenvang",
   "keywords": [

@@ -17,3 +17,8 @@ All notable changes to the "sf-user-manager" extension will be documented in thi
 ### Added
 - Added alias display
 - Added Sandbox/Production indicator
+
+## [0.1.2] - 2025-03-28
+
+### Added
+- Clean up
