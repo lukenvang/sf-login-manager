@@ -1,14 +1,11 @@
 const vscode = require('vscode');
 const { executeCommand } = require('./src/utils');
-const SalesforceLoginProvider = require('./src/salesforceLoginProvider');
 const LoginManagerPanel = require('./src/loginManagerPanel');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-    // Create the Salesforce login tree view provider
-    const loginProvider = new SalesforceLoginProvider();
 
     // Register command to open the login panel
     let openLoginPanel = vscode.commands.registerCommand('user-manager.openLoginPanel', function () {
@@ -17,7 +14,18 @@ function activate(context) {
 
     // Register command to refresh the login view
     let refreshLoginView = vscode.commands.registerCommand('user-manager.refreshLoginView', function () {
-        loginProvider.refresh();
+        vscode.window.withProgress({
+            location: vscode.ProgressLocation.Notification,
+            title: 'Refreshing login view'
+        },
+            async (progress) => {
+                try {
+                    LoginManagerPanel.currentPanel.refresh();
+                } catch (error) {
+                    vscode.window.showErrorMessage(`Error refreshing login view: ${error.message}`);
+                }
+            }
+        );
     });
 
     // Register command to open org in browser
@@ -34,12 +42,11 @@ function activate(context) {
             title: `Opening org ${username} in browser...`
         },
             async (progress) => {
-                progress.report({ message: 'Opening salesforce org' });
                 try {
                     await executeCommand(`sf org open -o ${username} --json`);
 
                 } catch (e) {
-                    vscode.window.showErrorMessage(`Error opening org in incognito mode: ${e.message}`);
+                    vscode.window.showErrorMessage(`Error opening org: ${e.message}`);
                 }
 
             }
@@ -59,7 +66,6 @@ function activate(context) {
             title: `Opening org ${username} in browser (Incognito) ...`
         },
             async (progress) => {
-                progress.report({ message: 'Opening salesforce org ( Incognito )' });
                 try {
                     await executeCommand(`sf org open -o ${username} --private --json`);
                 } catch (e) {
