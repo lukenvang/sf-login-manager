@@ -108,7 +108,6 @@ class LoginManagerPanel {
             for (const login of loginInfo.logins) {
                 const displayName = login.alias || login.username;
                 const isDefaultClass = login.isDefault ? 'is-default' : '';
-                const isSandbox = login.isSandbox ? 'Sandbox' : 'Production';
 
                 loginListHtml += `
                     <div class="login-item ${isDefaultClass}" data-username="${login.username}" data-alias="${login.alias}">
@@ -117,7 +116,7 @@ class LoginManagerPanel {
                             <div class="login-email">${login.username}</div>
                             ${login.instanceUrl ? `<div class="login-instance">${login.instanceUrl}</div>` : ''}
                             ${login.isDefault ? '<div class="default-badge">Default</div>' : ''}
-                            <div class="login-instance">${isSandbox}</div>
+                            <div class="login-instance">${login.type}</div>
                         </div>
                         <div class="login-actions">
                             <button class="action-button open-org" data-username="${login.username}">
