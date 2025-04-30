@@ -22,3 +22,8 @@ All notable changes to the "sf-user-manager" extension will be documented in thi
 
 ### Added
 - Clean up
+
+## [0.1.3] - 2025-04-30
+
+### Added
+- Better identify if login belongs to sandbox, scratch, or production

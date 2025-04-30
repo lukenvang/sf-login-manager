@@ -68,6 +68,17 @@ function findAliasForUsername(username) {
 }
 
 /**
+ * Determine the organization type based on org properties
+ * @param {Object} org The org configuration object
+ * @returns {string} The organization type (Sandbox, Scratch, or Production)
+ */
+function getOrgType(org) {
+    if (org?.isSandbox) return 'Sandbox';
+    if (org?.isScratch) return 'Scratch';
+    return 'Production';
+}
+
+/**
  * Get login information from Salesforce CLI config
  * @returns {Object} Object containing logins and default username
  */
@@ -121,7 +132,7 @@ function getLoginInfo() {
                         orgId: content.orgId || null,
                         instanceUrl: content.instanceUrl || null,
                         isDefault: content.username === defaultUsername,
-                        isSandbox: content.isSandbox || false,
+                        type: getOrgType(content),
                         alias: usernameToAliasMap.get(content.username)
 
                     });
@@ -142,5 +153,6 @@ module.exports = {
     executeCommand,
     getSfdxConfigPath,
     findAliasForUsername,
-    getLoginInfo
+    getLoginInfo,
+    getOrgType
 }; 
