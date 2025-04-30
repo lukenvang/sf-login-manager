@@ -128,7 +128,7 @@ function activate(context) {
                     }
 
                     progress.report({ message: 'Logged out successfully' });
-                    loginProvider.refresh();
+  
                     if (LoginManagerPanel.currentPanel) {
                         LoginManagerPanel.currentPanel.refresh();
                     }
